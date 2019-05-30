@@ -51,9 +51,9 @@ Add the Humio Micrometer registry to your build dependencies.
 
 ```xml
 <dependency>
-    <groupId>io.micromete</groupId>
+    <groupId>io.micrometer</groupId>
     <artifactId>micrometer-registry-humio</artifactId>
-    <version>latest.release</version>
+    <version>1.1.4</version>
 </dependency>
 ```
 
