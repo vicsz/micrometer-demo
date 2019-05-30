@@ -4,46 +4,46 @@
 
 ```java 
 
-    @RequestMapping("/count")
-    public void count(){
+   @RequestMapping("/transferFile")
+   public void transferFile(){
 
-        Metrics.counter("sample.counter").increment(Math.random());
+       Metrics.counter("files.transferred").increment(new Random().nextInt(10));
 
-    }
+   }
 
-    @PostConstruct
-    public void gauge(){
+   @PostConstruct
+   public void waterLevel(){
 
-        Metrics.gauge("sample.gauge", Runtime.getRuntime(), Runtime::freeMemory);
+       Metrics.gauge("water.level", this, MetricsController::getWaterLevel);
 
-    }
+   }
 
 
-    @RequestMapping("/timer")
-    public void timer(){
+   @RequestMapping("/randomDelay")
+   public void timer(){
 
-       Metrics.timer("sample.timer").record(this::randomDelay);
+       Metrics.timer("random.delay.time").record(this::randomDelay);
 
-    }
+   }
 
-    @RequestMapping("/summary")
-    public void distributionSummary() {
+   @RequestMapping("/purchase")
+   public void purchase() {
 
-       Metrics.summary("sample.summary").record(getRandomPurchaseAmount());
+       Metrics.summary("purchase").record(getRandomPurchaseAmount());
 
-    }
+   }
 
-    @Scheduled(fixedRate = 2000)
-    public void performScheduledPurchases() {
+   @Scheduled(fixedRate = 2000)
+   public void performScheduledPurchases() {
 
-        Metrics.summary("purchase", "product_name", getRandomPurchaseName()).record(getRandomPurchaseAmount());
+       Metrics.summary("purchase.details", "product_name", getRandomPurchaseName()).record(getRandomPurchaseAmount());
 
-    }
-    
+   }
+
    @RequestMapping("/exception")
-    public void exception(){
-        throw new RuntimeException("Something bad happened!!");
-    }
+   public void exception(){
+       throw new RuntimeException("Something bad happened!!");
+   }
 
 
 
