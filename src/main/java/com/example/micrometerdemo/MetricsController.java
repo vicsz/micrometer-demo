@@ -1,6 +1,5 @@
 package com.example.micrometerdemo;
 
-import io.micrometer.core.instrument.Metrics;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,12 +66,9 @@ public class MetricsController {
         //TODO Add alerting on 500 errors
     }
 
-
-
     //////////////
     //////////////
     //////////////
-
 
     private double getRandomPurchaseAmount(){
 
