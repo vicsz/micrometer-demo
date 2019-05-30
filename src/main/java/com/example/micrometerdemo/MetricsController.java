@@ -13,7 +13,6 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 @RestController
-@RequestMapping("/metrics")
 @EnableScheduling
 public class MetricsController {
 
@@ -65,12 +64,18 @@ public class MetricsController {
         
     }
 
-    ////
 
-    //Random Purchase Amount with an hourly pattern
+
+    //////////////
+    //////////////
+    //////////////
+
+
+
+    //Random Purchase Amount with an minute sinusoidal pattern
     private double getRandomPurchaseAmount(){
 
-        double waveValue = (Math.cos(((double) LocalTime.now().getMinute() )/ 60 * (2 * Math.PI)) + 1 ) / 2;
+        double waveValue = (Math.cos(((double) LocalTime.now().getSecond() )/ 60 * (2 * Math.PI)) + 1 ) / 2;
 
         double totalValue = waveValue * 35 + (Math.random() * 50);
 
