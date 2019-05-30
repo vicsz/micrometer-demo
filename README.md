@@ -81,7 +81,12 @@ __name=purchase | timechart(function=avg(sum))__
 
 Timechart example split by product_name (label / tag):
 
-__name=purchase | timechart(product_name, function=avg(sum))__
+__name=purchase_amount | timechart(product_name, function=avg(sum))__
+
+
+Count purchases: 
+
+name=purchase | sum(field=sum)
 
 ## Creating a Slack Incoming WebHook URL
 
