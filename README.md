@@ -33,12 +33,18 @@
 
     }
 
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedRate = 2000)
     public void performScheduledPurchases() {
 
-        Metrics.summary("sample.summary.tagged", "product_name", getRandomPurchaseName()).record(getRandomPurchaseAmount());
+        Metrics.summary("purchase", "product_name", getRandomPurchaseName()).record(getRandomPurchaseAmount());
 
     }
+    
+   @RequestMapping("/exception")
+    public void exception(){
+        throw new RuntimeException("Something bad happened!!");
+    }
+
 
 
 ```
@@ -76,3 +82,25 @@ __name=purchase | timechart(function=avg(sum))__
 Timechart example split by product_name (label / tag):
 
 __name=purchase | timechart(product_name, function=avg(sum))__
+
+## Creating a Slack Incoming WebHook URL
+
+For Humio Alerting functionality
+
+One can be created by logging into your Slack account at www.slack.com, browsing the *App Directory* for *Incoming WebHooks* and adding your own configuration. 
+
+(App Directory Link is available on home page footer of Slack under Resources).
+
+<img src="img/appdirectory.png" width="750">
+
+<img src="img/webhook.png" width="750">
+
+<img src="img/webhookurl.png" width="750">
+
+You should then be able to send Slack messages to yourself by *posting* to that URL.
+
+Example: (note INSERT_YOUR_WEB_HOOK_URL -- update this with your generated "Webhook URL")
+
+```sh
+curl -s -d "payload={\"text\":\"Test Message\"}" INSERT_YOUR_WEB_HOOK_URL_HERE
+```

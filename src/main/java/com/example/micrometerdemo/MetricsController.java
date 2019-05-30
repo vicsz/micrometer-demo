@@ -61,9 +61,15 @@ public class MetricsController {
 
         System.out.println(getRandomPurchaseName() + " " + getRandomPurchaseAmount());
 
-        
+
     }
 
+    @RequestMapping("/exception")
+    public void exception(){
+
+
+       //TODO Add alerting on 500 errors
+    }
 
 
     //////////////
