@@ -88,6 +88,10 @@ Count purchases:
 
 name=purchase | sum(field=sum)
 
+Pie chart for purchase distribution:
+
+name=purchase_details | groupby(product_name, function=sum(field=sum))
+
 ## Creating a Slack Incoming WebHook URL
 
 For Humio Alerting functionality
